@@ -14,11 +14,11 @@ spring:
       password: ${sky.datasource.password}
 
 mybatis:
-  #mapper配置文件
+  #mapper config file
   mapper-locations: classpath:mapper/*.xml
   type-aliases-package: com.sky.entity
   configuration:
-    #开启驼峰命名
+    #Open Hump Naming
     map-underscore-to-camel-case: true
 
 logging:
@@ -31,9 +31,14 @@ logging:
 
 sky:
   jwt:
-    # 设置jwt签名加密时使用的秘钥
+    # Setting the secret key used for jwt signature encryption
     admin-secret-key: itcast
-    # 设置jwt过期时间
+    # Setting the jwt expiration time
     admin-ttl: 7200000
-    # 设置前端传递过来的令牌名称
+    # Set the name of the token passed from the front end
     admin-token-name: token
+  alioss:
+    endpoint: ${sky.alioss.endpoint}
+    access-key-id: ${sky.alioss.access-key-id}
+    access-key-secret: ${sky.alioss.access-key-secret}
+    bucket-name: ${sky.alioss.bucket-name}
