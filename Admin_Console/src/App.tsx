@@ -50,6 +50,7 @@ import {
   AddDish,
   AddEmployee,
   UpdateCategory,
+  UpdateDish,
   UpdateEmployee,
 } from "./components";
 
@@ -443,6 +444,10 @@ function App() {
               <Route
                 path="/dish/new"
                 element={<PrivateRoute component={AddDish} />}
+              />
+              <Route
+                path="/dish/:id"
+                element={<PrivateRoute component={UpdateDish} />}
               />
               <Route
                 path="/categorymanagement"

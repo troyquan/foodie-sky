@@ -3,4 +3,12 @@ import UpdateEmployee from "./employee/UpdateEmployee";
 import AddCategory from "./category/AddCategory";
 import UpdateCategory from "./category/UpdateCategory";
 import AddDish from "./dish/AddDish";
-export { AddEmployee, UpdateEmployee, AddCategory, UpdateCategory, AddDish };
+import UpdateDish from "./dish/UpdateDish";
+export {
+  AddEmployee,
+  UpdateEmployee,
+  AddCategory,
+  UpdateCategory,
+  AddDish,
+  UpdateDish,
+};
