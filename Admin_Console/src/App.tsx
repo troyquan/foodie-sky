@@ -45,6 +45,7 @@ import {
   Statistics,
 } from "./page";
 import { useGetWeatherQuery } from "./Apis/weatherApi";
+import { AddEmployee } from "./components";
 
 const items: MenuProps["items"] = [
   {
@@ -152,7 +153,6 @@ function App() {
 
         <div className="flex justify-between border-red-400 w-full items-center">
           <div className="flex items-center">
-            {/* <AiOutlineMenuFold className="scale-150 " /> */}
             <Button
               type="text"
               icon={
@@ -351,8 +351,6 @@ function App() {
             theme="dark"
             mode="inline"
             className="mt-24 space-y-6  absolute bottom-4 left-0 right-0  "
-            // defaultSelectedKeys={["1"]}
-
             items={[
               {
                 key: "1",
@@ -401,17 +399,7 @@ function App() {
               }}
               className="flex items-end w-full    bg-stone-100 absolute left-0 right-0 top-0 "
             >
-              <h1
-                className="font-black text-xl text-gray-600  w-full pb-4  "
-                // style={{ textShadow: "3px 3px 1px rgba(0,0,0,0.3)" }}
-                // style={{
-                //   borderBottom:
-                //     location.pathname.includes("dash") ||
-                //     location.pathname.includes("statistics")
-                //       ? ""
-                //       : "4px solid rgba(0,0,0,0.1)",
-                // }}
-              >
+              <h1 className="font-black text-xl text-gray-600  w-full pb-4  ">
                 {location.pathname.includes("dish")
                   ? "DISH MANAGEMENT"
                   : location.pathname.includes("category")
@@ -454,6 +442,10 @@ function App() {
               <Route
                 path="/employeemanagement"
                 element={<PrivateRoute component={EmployeeManagement} />}
+              />
+              <Route
+                path="/employee/new"
+                element={<PrivateRoute component={AddEmployee} />}
               />
 
               <Route path="/login" element={<Login />} />
