@@ -1,3 +1,10 @@
+
+import { Badge, Space, Table, Spin, Divider, Input } from "antd";
+import Button from "antd/lib/button";
+
+import type { ColumnsType } from "antd/es/table";
+import { useGetUsersQuery } from "../Apis/userApi";
+
 import { Badge, Space, Table, Spin, Divider, message, Input } from "antd";
 import Button from "antd/lib/button";
 
@@ -7,6 +14,7 @@ import {
   useEnableUserMutation,
   useGetUsersQuery,
 } from "../Apis/userApi";
+
 import {
   EditOutlined,
   LockOutlined,
@@ -30,8 +38,11 @@ const EmployeeManagement = () => {
     pageSize: pagination.pageSize,
   });
 
+
+=======
   const [blockUser] = useBlockUserMutation();
   const [enableUser] = useEnableUserMutation();
+
   const [total, setTotal] = useState(0);
   const [employeeData, setEmployeeData] = useState([]);
 
@@ -42,6 +53,8 @@ const EmployeeManagement = () => {
     }
   }, [userdata, search, pagination]);
 
+
+=======
   const handleBlock = async (userId: string) => {
     try {
       await blockUser({ id: userId });
@@ -58,6 +71,7 @@ const EmployeeManagement = () => {
     await enableUser({ id: userId });
     message.success("you have enable the user");
   };
+
 
   interface DataType {
     key: string;
