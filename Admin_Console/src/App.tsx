@@ -47,6 +47,7 @@ import {
 import { useGetWeatherQuery } from "./Apis/weatherApi";
 import {
   AddCategory,
+  AddDish,
   AddEmployee,
   UpdateCategory,
   UpdateEmployee,
@@ -439,6 +440,10 @@ function App() {
                 element={<PrivateRoute component={DishManagement} />}
               />
 
+              <Route
+                path="/dish/new"
+                element={<PrivateRoute component={AddDish} />}
+              />
               <Route
                 path="/categorymanagement"
                 element={<PrivateRoute component={CategoryManagement} />}
