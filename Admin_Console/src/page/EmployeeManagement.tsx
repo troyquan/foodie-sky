@@ -7,6 +7,7 @@ import {
   useEnableUserMutation,
   useGetUsersQuery,
 } from "../Apis/userApi";
+
 import {
   EditOutlined,
   LockOutlined,
@@ -32,6 +33,7 @@ const EmployeeManagement = () => {
 
   const [blockUser] = useBlockUserMutation();
   const [enableUser] = useEnableUserMutation();
+
   const [total, setTotal] = useState(0);
   const [employeeData, setEmployeeData] = useState([]);
 

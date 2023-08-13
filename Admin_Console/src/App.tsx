@@ -45,7 +45,7 @@ import {
   Statistics,
 } from "./page";
 import { useGetWeatherQuery } from "./Apis/weatherApi";
-import { AddEmployee, UpdateEmployee } from "./components";
+import { AddCategory, AddEmployee, UpdateEmployee } from "./components";
 
 const items: MenuProps["items"] = [
   {
@@ -437,6 +437,10 @@ function App() {
               <Route
                 path="/categorymanagement"
                 element={<PrivateRoute component={CategoryManagement} />}
+              />
+              <Route
+                path="/category/new"
+                element={<PrivateRoute component={AddCategory} />}
               />
 
               <Route
