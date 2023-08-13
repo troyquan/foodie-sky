@@ -22,7 +22,6 @@ const AddCategory = () => {
   });
   useEffect(() => {
     if (data) {
-      // setUserData(data.data);
       setUserInput({
         name: data.data.name,
         type: data.data.type,
@@ -43,10 +42,7 @@ const AddCategory = () => {
       setError("category name is empty");
       return;
     }
-    // if (!userInput.type) {
-    //   setError("type is empty");
-    //   return;
-    // }
+
     if (!userInput.sort) {
       setError("sort is empty");
       return;
@@ -56,7 +52,6 @@ const AddCategory = () => {
       return;
     }
 
-    // setLoading(true);
     await AddCategory({ id, ...userInput });
     navigate("/categorymanagement");
     message.success("you have succefully added an new category");
@@ -107,34 +102,6 @@ const AddCategory = () => {
           />
         </div>
 
-        {/* <div>
-          <p className="mb-4">Type:</p>
-          <div className="flex items-center space-x-4">
-            <div className="flex items-center space-x-1">
-              <input
-                type="radio"
-                id="html"
-                name="type"
-                value="1"
-                checked={userInput.type == "1"}
-                onChange={handleUserInput}
-              />
-                <label htmlFor="html">1. Dish</label>
-            </div>
-            <div className="flex items-center space-x-1">
-              <input
-                type="radio"
-                id="female"
-                name="type"
-                value="2"
-                checked={userInput.type == "2"}
-                onChange={handleUserInput}
-              />
-                <label htmlFor="female">2. Others</label>
-            </div>
-          </div>
-          <div className="text-red-500 mt-5">{error && error}</div>
-        </div> */}
         <div className="text-red-500 mt-5">{error && error}</div>
         <div className="flex flex-col md:flex-row lg:flex-row lg:space-x-4 md:space-x-4 space-x-0 space-y-4 md:space-y-0 lg:space-y-0 w-full justify-center border-t py-4 ">
           <button
