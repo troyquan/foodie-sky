@@ -1,10 +1,10 @@
-import { Badge, Space, Table, Spin, Divider, Input } from "antd";
+import { Badge, Space, Table, Spin, Divider, message, Input } from "antd";
 import Button from "antd/lib/button";
 
 import type { ColumnsType } from "antd/es/table";
 import {
-  // useBlockUserMutation,
-  // useEnableUserMutation,
+  useBlockUserMutation,
+  useEnableUserMutation,
   useGetUsersQuery,
 } from "../Apis/userApi";
 import {
@@ -30,8 +30,8 @@ const EmployeeManagement = () => {
     pageSize: pagination.pageSize,
   });
 
-  // const [blockUser] = useBlockUserMutation();
-  // const [enableUser] = useEnableUserMutation();
+  const [blockUser] = useBlockUserMutation();
+  const [enableUser] = useEnableUserMutation();
   const [total, setTotal] = useState(0);
   const [employeeData, setEmployeeData] = useState([]);
 
@@ -42,22 +42,22 @@ const EmployeeManagement = () => {
     }
   }, [userdata, search, pagination]);
 
-  // const handleBlock = async (userId: string) => {
-  //   try {
-  //     await blockUser({ id: userId });
-  //   } catch (err) {
-  //     console.log(err);
-  //     console.log("there is err");
+  const handleBlock = async (userId: string) => {
+    try {
+      await blockUser({ id: userId });
+    } catch (err) {
+      console.log(err);
+      console.log("there is err");
 
-  //     return;
-  //   }
+      return;
+    }
 
-  //   message.error("you have block the user");
-  // };
-  // const handleEnable = async (userId: string) => {
-  //   await enableUser({ id: userId });
-  //   message.success("you have enable the user");
-  // };
+    message.error("you have block the user");
+  };
+  const handleEnable = async (userId: string) => {
+    await enableUser({ id: userId });
+    message.success("you have enable the user");
+  };
 
   interface DataType {
     key: string;
@@ -119,13 +119,13 @@ const EmployeeManagement = () => {
             {record.status ? (
               <LockOutlined
                 className="bg-rose-400 p-2 rounded-lg text-white"
-                // onClick={() => handleBlock(String(record.id))}
+                onClick={() => handleBlock(String(record.id))}
               />
             ) : (
               <button>
                 <UnlockOutlined
                   className="bg-teal-500 p-2 rounded-lg text-white"
-                  // onClick={() => handleEnable(String(record.id))}
+                  onClick={() => handleEnable(String(record.id))}
                 />
               </button>
             )}
