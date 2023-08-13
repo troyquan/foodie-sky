@@ -81,11 +81,6 @@ const DishManagement: React.FC = () => {
 
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-      // console.log(
-      //   `selectedRowKeys: ${selectedRowKeys}`,
-      //   "selectedRows: ",
-      //   selectedRows
-      // );
       setIds(`${selectedRowKeys}`);
     },
   };
@@ -120,17 +115,10 @@ const DishManagement: React.FC = () => {
     }
   }, [finalCategoryData]);
 
-  // useEffect(() => {
-  //   console.log(search);
-  // }, [search]);
-
   const handleBlock = async (userId: string) => {
     try {
       await blockDish({ id: userId });
     } catch (err) {
-      // console.log(err);
-      // console.log("there is err");
-
       return;
     }
 
@@ -165,8 +153,6 @@ const DishManagement: React.FC = () => {
     image: string;
     category: string;
     price: string;
-    // type: string;
-    // sort: string;
     status: string;
     lastTime: string;
   }
@@ -197,12 +183,7 @@ const DishManagement: React.FC = () => {
       key: "categoryName",
       render: (text: string) => <a>{text}</a>,
     },
-    // {
-    //   title: "Type",
-    //   dataIndex: "type",
-    //   key: "type",
-    //   render: (text: string) => <a>{text == "1" ? "dish" : "others"}</a>,
-    // },
+
     {
       title: "Price",
       dataIndex: "price",
