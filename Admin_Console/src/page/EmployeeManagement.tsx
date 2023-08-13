@@ -167,7 +167,7 @@ const EmployeeManagement = () => {
 
             <Button
               className="bg-yellow-500 hover:bg-yellow-600 text-white border-none hover:text-red-300 mx-4"
-              onClick={() => navigate("/employee/new")}
+              // onClick={() => navigate("/employee/new")}
             >
               +Add employee
             </Button>
