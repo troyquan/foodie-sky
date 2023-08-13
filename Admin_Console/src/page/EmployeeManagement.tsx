@@ -1,4 +1,4 @@
-import { Badge, Space, Table, Spin, Divider, message, Input } from "antd";
+import { Badge, Space, Table, message, Spin, Divider, Input } from "antd";
 import Button from "antd/lib/button";
 
 import type { ColumnsType } from "antd/es/table";
@@ -7,7 +7,6 @@ import {
   useEnableUserMutation,
   useGetUsersQuery,
 } from "../Apis/userApi";
-
 import {
   EditOutlined,
   LockOutlined,
@@ -33,7 +32,6 @@ const EmployeeManagement = () => {
 
   const [blockUser] = useBlockUserMutation();
   const [enableUser] = useEnableUserMutation();
-
   const [total, setTotal] = useState(0);
   const [employeeData, setEmployeeData] = useState([]);
 
@@ -43,6 +41,10 @@ const EmployeeManagement = () => {
       setEmployeeData(userdata.apiResponse.data.records);
     }
   }, [userdata, search, pagination]);
+
+  // useEffect(() => {
+  //   console.log(search);
+  // }, [search]);
 
   const handleBlock = async (userId: string) => {
     try {
@@ -72,6 +74,11 @@ const EmployeeManagement = () => {
   }
 
   const columns: ColumnsType<DataType> = [
+    // {
+    //   title: "Id",
+    //   dataIndex: "id",
+    //   key: "id",
+    // },
     {
       title: "Employ Name",
       dataIndex: "name",
