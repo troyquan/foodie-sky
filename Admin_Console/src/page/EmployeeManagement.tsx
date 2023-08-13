@@ -1,4 +1,4 @@
-import { Badge, Space, Table, message, Spin, Divider, Input } from "antd";
+import { Badge, Space, Table, Spin, Divider, Input } from "antd";
 import Button from "antd/lib/button";
 
 import type { ColumnsType } from "antd/es/table";
@@ -167,7 +167,7 @@ const EmployeeManagement = () => {
 
             <Button
               className="bg-yellow-500 hover:bg-yellow-600 text-white border-none hover:text-red-300 mx-4"
-              // onClick={() => navigate("/employee/new")}
+              onClick={() => navigate("/employee/new")}
             >
               +Add employee
             </Button>

@@ -45,7 +45,7 @@ import {
   Statistics,
 } from "./page";
 import { useGetWeatherQuery } from "./Apis/weatherApi";
-import { AddEmployee } from "./components";
+import { AddEmployee, UpdateEmployee } from "./components";
 
 const items: MenuProps["items"] = [
   {
@@ -446,6 +446,10 @@ function App() {
               <Route
                 path="/employee/new"
                 element={<PrivateRoute component={AddEmployee} />}
+              />
+              <Route
+                path="/employee/:id"
+                element={<PrivateRoute component={UpdateEmployee} />}
               />
 
               <Route path="/login" element={<Login />} />
