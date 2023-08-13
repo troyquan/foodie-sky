@@ -8,7 +8,7 @@ const categoryApi = createApi({
       const userObj = localStorage.getItem("currentUser");
       let token;
       token = userObj && JSON.parse(userObj).token;
-      // token && headers.append("Authorization", "Bearer " + token);
+
       token && headers.append("token", token);
     },
   }),
@@ -29,7 +29,6 @@ const categoryApi = createApi({
       transformResponse(apiResponse: { data: any }) {
         return {
           apiResponse,
-          //   totalRecords: meta.response.headers.get("X-Pagination"),
         };
       },
       providesTags: ["Categories"],

@@ -29,7 +29,6 @@ const categoryApi = createApi({
       transformResponse(apiResponse: { data: any }) {
         return {
           apiResponse,
-          //   totalRecords: meta.response.headers.get("X-Pagination"),
         };
       },
       providesTags: ["Categories"],
