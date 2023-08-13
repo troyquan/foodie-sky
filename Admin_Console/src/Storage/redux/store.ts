@@ -3,6 +3,7 @@ import { authApi } from "../../Apis";
 
 import { userAuthReducer } from "./userAuthSlice";
 import weatherApi from "../../Apis/weatherApi";
+import userApi from "../../Apis/userApi";
 
 const store = configureStore({
   reducer: {
@@ -10,11 +11,13 @@ const store = configureStore({
 
     [authApi.reducerPath]: authApi.reducer,
     [weatherApi.reducerPath]: weatherApi.reducer,
+    [userApi.reducerPath]: userApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
       .concat(authApi.middleware)
-      .concat(weatherApi.middleware),
+      .concat(weatherApi.middleware)
+      .concat(userApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;
