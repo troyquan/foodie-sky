@@ -37,5 +37,8 @@ public interface EmployeeMapper {
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
 
     @AutoFill(value = OperationType.UPDATE)
+    /**
+     * enable/disable employee
+     */
     void update(Employee employee);
 }
