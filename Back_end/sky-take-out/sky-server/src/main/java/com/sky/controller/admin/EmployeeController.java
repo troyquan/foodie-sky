@@ -109,5 +109,14 @@ public class EmployeeController {
         employeeService.startOrStrop(status, id);
         return Result.success();
     }
+    /**
+     * get by ID
+     */
 
+    @GetMapping("/{id}")
+    @ApiOperation("search employee")
+    public Result<Employee> getById(@PathVariable Long id){
+        Employee employee = employeeService.getById(id);
+        return Result.success(employee);
+    }
 }

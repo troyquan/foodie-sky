@@ -26,10 +26,17 @@ public interface EmployeeService {
 
 
     /**
-     * start or stop
+     * enable or disable
      * @param status
      * @param id
      * @return
      */
     void startOrStrop(Integer status, Long id);
+
+    /**
+     * get by ID
+     * @param id
+     * @return
+     */
+    Employee getById(Long id);
 }
