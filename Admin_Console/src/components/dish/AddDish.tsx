@@ -73,7 +73,7 @@ const AddDish = () => {
     // } else {
     //   setSelectedFile(null);
     // }
-
+    console.log(file)
     if (!file) {
       message.error("No file selected");
       return;
