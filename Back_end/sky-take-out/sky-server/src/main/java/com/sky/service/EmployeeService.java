@@ -39,4 +39,10 @@ public interface EmployeeService {
      * @return
      */
     Employee getById(Long id);
+    /**
+     * update employee by id
+     * @param
+     * @return
+     */
+    void update(EmployeeDTO employeeDTO);
 }
