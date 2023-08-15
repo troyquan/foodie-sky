@@ -87,7 +87,7 @@ public class DishServiceImpl implements DishService {
     public void deleteBatch(List<Long> ids) {
         //Determine if the current dish can be deleted - is there a dish on sale?
         for (Long id : ids) {
-            Dish dish = dishMapper.getById(id);//后绪步骤实现
+            Dish dish = dishMapper.getById(id);
             if (dish.getStatus() == StatusConstant.ENABLE) {
                 //The current dish is on sale and cannot be deleted.
                 throw new DeletionNotAllowedException(MessageConstant.DISH_ON_SALE);
@@ -108,4 +108,53 @@ public class DishServiceImpl implements DishService {
             dishFlavorMapper.deleteByDishId(id);
         }
     }
+
+    /**
+     * Query dishes and corresponding flavor data based on ids
+     *
+     * @param id
+     * @return
+     */
+    public DishVO getByIdWithFlavor(Long id) {
+        //Query dish data by id
+        Dish dish = dishMapper.getById(id);
+
+        //Query flavor data based on dish id
+        List<DishFlavor> dishFlavors = dishFlavorMapper.getByDishId(id);
+
+        //Encapsulate the queried data into VO
+        DishVO dishVO = new DishVO();
+        BeanUtils.copyProperties(dish, dishVO);
+        dishVO.setFlavors(dishFlavors);
+
+        return dishVO;
+    }
+
+    /**
+     * Update the basic information of the dish and the corresponding flavor information according to the id
+     *
+     * @param dishDTO
+     */
+    public void updateWithFlavor(DishDTO dishDTO) {
+        Dish dish = new Dish();
+        BeanUtils.copyProperties(dishDTO, dish);
+
+        //Update the basic information of the menu table
+        dishMapper.update(dish);
+
+        //Delete original flavor data
+        dishFlavorMapper.deleteByDishId(dishDTO.getId());
+
+        //Re-insert flavor data
+        List<DishFlavor> flavors = dishDTO.getFlavors();
+        if (flavors != null && flavors.size() > 0) {
+            flavors.forEach(dishFlavor -> {
+                dishFlavor.setDishId(dishDTO.getId());
+            });
+            //Insert several data into the flavor table
+            dishFlavorMapper.insertBatch(flavors);
+        }
+    }
+
+
 }
