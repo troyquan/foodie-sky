@@ -1,5 +1,7 @@
 package com.sky.vo;
 
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -11,10 +13,15 @@ import java.io.Serializable;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@ApiModel(description = "User Login return datatype")
 public class UserLoginVO implements Serializable {
-
+    @ApiModelProperty("id")
     private Long id;
-    private String openid;
+
+    @ApiModelProperty("username")
+    private String userName;
+
+    @ApiModelProperty("JWT Token")
     private String token;
 
 }
