@@ -53,6 +53,11 @@ import {
   UpdateDish,
   UpdateEmployee,
 } from "./components";
+import apiResponse from "./interfaces/apiResponse";
+import {
+  useGetShopStatusQuery,
+  useSetShopStatusMutation,
+} from "./Apis/shopApi";
 
 const items: MenuProps["items"] = [
   {
@@ -77,6 +82,8 @@ function App() {
   const [temp, setTemp] = useState("");
   const [description, setDescription] = useState("");
   const [weatherSrc, setWeatherSrc] = useState("");
+  const [setShopStatus] = useSetShopStatusMutation();
+  const { data: currentShopStatus } = useGetShopStatusQuery({});
 
   useEffect(() => {
     if (!isLoading && data) {
@@ -113,6 +120,12 @@ function App() {
     }
   }, [data]);
 
+  useEffect(() => {
+    if (currentShopStatus) {
+      setStatus(Boolean(currentShopStatus.data));
+    }
+  }, [currentShopStatus]);
+
   function handleSignout() {
     localStorage.removeItem("currentUser");
 
@@ -136,13 +149,23 @@ function App() {
     }
   }, [width]);
 
-  const onClick: MenuProps["onClick"] = ({ key }) => {
+  const onClick: MenuProps["onClick"] = async ({ key }) => {
     if (key == "1") {
-      setStatus(true);
-      message.info(`restaurant is set in bussiness`);
+      const { data }: apiResponse = await setShopStatus(1);
+      if (data) {
+        if (data.code == 1) {
+          setStatus(true);
+          message.info(`restaurant is set in bussiness`);
+        }
+      }
     } else {
-      message.info(`restaurant is set close`);
-      setStatus(false);
+      const { data }: apiResponse = await setShopStatus(0);
+      if (data) {
+        if (data.code == 1) {
+          setStatus(false);
+          message.info(`restaurant is set close`);
+        }
+      }
     }
   };
 
