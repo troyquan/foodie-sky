@@ -1,6 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import { authApi, categoryApi, dishApi, userApi, weatherApi } from "../../Apis";
+import {
+  authApi,
+  categoryApi,
+  dishApi,
+  shopApi,
+  userApi,
+  weatherApi,
+} from "../../Apis";
 
 import { userAuthReducer } from "./userAuthSlice";
 import { categoryReducer } from "./categorySlice";
@@ -15,6 +22,7 @@ const store = configureStore({
     [userApi.reducerPath]: userApi.reducer,
     [categoryApi.reducerPath]: categoryApi.reducer,
     [dishApi.reducerPath]: dishApi.reducer,
+    [shopApi.reducerPath]: shopApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware()
@@ -22,7 +30,8 @@ const store = configureStore({
       .concat(weatherApi.middleware)
       .concat(userApi.middleware)
       .concat(categoryApi.middleware)
-      .concat(dishApi.middleware),
+      .concat(dishApi.middleware)
+      .concat(shopApi.middleware),
 });
 
 export type RootState = ReturnType<typeof store.getState>;

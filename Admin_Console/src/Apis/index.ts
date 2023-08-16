@@ -4,4 +4,5 @@ import weatherApi from "./weatherApi";
 
 import categoryApi from "./categoyApi";
 import dishApi from "./dishApi";
-export { authApi, userApi, weatherApi, categoryApi, dishApi };
+import shopApi from "./shopApi";
+export { authApi, userApi, weatherApi, categoryApi, dishApi, shopApi };
