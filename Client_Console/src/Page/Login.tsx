@@ -55,6 +55,8 @@ const Login = () => {
           "currentUser",
           JSON.stringify({ id, name, username, token })
         );
+        localStorage.setItem("id", id);
+        localStorage.setItem("token", token);
         dispatch(setLoggedInUser({ id, name, username, token }));
         navigate("/");
         message.info(`you have succucessfully logged in`);
