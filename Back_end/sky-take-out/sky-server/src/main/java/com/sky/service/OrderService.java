@@ -38,4 +38,18 @@ public interface OrderService {
      * @param ordersCancelDTO
      */
     void cancel(OrdersCancelDTO ordersCancelDTO) throws Exception;
+
+    /**
+     * Order Delivery
+     *
+     * @param id
+     */
+    void delivery(Long id);
+
+    /**
+     * Complete Order
+     *
+     * @param id
+     */
+    void complete(Long id);
 }
