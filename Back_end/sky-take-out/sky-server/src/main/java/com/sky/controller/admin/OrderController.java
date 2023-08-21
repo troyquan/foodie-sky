@@ -36,4 +36,17 @@ public class OrderController {
         PageResult pageResult = orderService.conditionSearch(ordersPageQueryDTO);
         return Result.success(pageResult);
     }
+
+    /**
+     * Order Details
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/details/{id}")
+    @ApiOperation("Check Order Details")
+    public Result<OrderVO> details(@PathVariable("id") Long id) {
+        OrderVO orderVO = orderService.details(id);
+        return Result.success(orderVO);
+    }
 }
