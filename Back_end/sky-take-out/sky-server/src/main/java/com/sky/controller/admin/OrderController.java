@@ -49,4 +49,16 @@ public class OrderController {
         OrderVO orderVO = orderService.details(id);
         return Result.success(orderVO);
     }
+
+    /**
+     * Confirm Order
+     *
+     * @return
+     */
+    @PutMapping("/confirm")
+    @ApiOperation("Confirm Order")
+    public Result confirm(@RequestBody OrdersConfirmDTO ordersConfirmDTO) {
+        orderService.confirm(ordersConfirmDTO);
+        return Result.success();
+    }
 }
