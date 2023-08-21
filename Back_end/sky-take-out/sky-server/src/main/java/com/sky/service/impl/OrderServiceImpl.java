@@ -191,4 +191,49 @@ public class OrderServiceImpl implements OrderService {
         orders.setCancelTime(LocalDateTime.now());
         orderMapper.update(orders);
     }
+
+    /**
+     * Order Delivery
+     *
+     * @param id
+     */
+    public void delivery(Long id) {
+        // Search orders by id
+        Orders ordersDB = orderMapper.getById(id);
+
+        // Verify that the order exists and has a status of 3(CONFIRMED)
+        if (ordersDB == null || !ordersDB.getStatus().equals(Orders.CONFIRMED)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Orders orders = new Orders();
+        orders.setId(ordersDB.getId());
+        // Update the order status to Delivery in Progress.
+        orders.setStatus(Orders.DELIVERY_IN_PROGRESS);
+
+        orderMapper.update(orders);
+    }
+
+    /**
+     * Complete Order
+     *
+     * @param id
+     */
+    public void complete(Long id) {
+        // Search orders by id
+        Orders ordersDB = orderMapper.getById(id);
+
+        // Verify that the order exists and has a status of 4(DELIVERY_IN_PROGRESS)
+        if (ordersDB == null || !ordersDB.getStatus().equals(Orders.DELIVERY_IN_PROGRESS)) {
+            throw new OrderBusinessException(MessageConstant.ORDER_STATUS_ERROR);
+        }
+
+        Orders orders = new Orders();
+        orders.setId(ordersDB.getId());
+        // Update order status, status changed to completed
+        orders.setStatus(Orders.COMPLETED);
+        orders.setDeliveryTime(LocalDateTime.now());
+
+        orderMapper.update(orders);
+    }
 }
