@@ -36,9 +36,29 @@ import java.util.stream.Collectors;
 public class OrderServiceImpl implements OrderService {
     @Autowired
     private OrderMapper orderMapper;
-
     @Autowired
     private OrderDetailMapper orderDetailMapper;
+
+    /**
+     * Check Order Details
+     *
+     * @param id
+     * @return
+     */
+    public OrderVO details(Long id) {
+        // Query order by id
+        Orders orders = orderMapper.getById(id);
+
+        // Check the details of the dish corresponding to the order.
+        List<OrderDetail> orderDetailList = orderDetailMapper.getByOrderId(orders.getId());
+
+        // Encapsulates  the order and its details into OrderVO
+        OrderVO orderVO = new OrderVO();
+        BeanUtils.copyProperties(orders, orderVO);
+        orderVO.setOrderDetailList(orderDetailList);
+
+        return orderVO;
+    }
 
     @Override
     public void cancel(OrdersCancelDTO ordersCancelDTO) {
