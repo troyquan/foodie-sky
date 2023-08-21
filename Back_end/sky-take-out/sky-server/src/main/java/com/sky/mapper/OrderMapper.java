@@ -12,6 +12,11 @@ import java.util.List;
 
 @Mapper
 public interface OrderMapper {
+    /**
+     * Modify Order Information
+     * @param orders
+     */
+    void update(Orders orders);
 
     /**
      * Get by Id
