@@ -15,7 +15,7 @@ const dishApi = createApi({
   endpoints: (builder) => ({
     getDishes: builder.query({
       query: () => ({
-        url: "all",
+        url: "list",
         method: "GET",
       }),
       transformResponse(apiResponse: { data: any }) {

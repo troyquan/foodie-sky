@@ -26,6 +26,10 @@ import { setSearchItem } from "./Storage/redux/searchSlice";
 import { setIsCartOpen } from "./Storage/redux/shoppingCartSlice";
 import CartItem from "./Components/cart/CartItem";
 import { useShowShoppingCartQuery } from "./Apis/shoppingCartApi";
+import OrderDetails from './Page/OrderDetails';
+import PaymentComplete from './Components/Payment/PaymentComplete';
+import Payment from './Components/Payment/Payment';
+import AddressNew from './Components/AddressBook/AddressNew'
 
 const { Header, Content, Footer } = Layout;
 
@@ -230,8 +234,14 @@ const App: React.FC = () => {
               <Route path="/" element={<Landing />} />
               <Route path="/orderhistory" element={<OrderHistory />} />
               <Route path="/checkout" element={<Checkout />} />
+              <Route path="/payment" element={<Payment />} />
+              <Route path="/paymentComplete" element={<PaymentComplete/>}></Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
+              <Route path="/orderDetails" element={<OrderDetails />} />
+              <Route path="/newAddress" element={<AddressNew />} />
+
+
             </Routes>
           </div>
           <Footer
