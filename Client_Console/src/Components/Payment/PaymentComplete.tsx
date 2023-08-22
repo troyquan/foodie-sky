@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 
 import { emptyCart } from "../../Storage/redux/shoppingCartSlice";
 import axios from "axios";
+import { message } from "antd";
 
 
 function PaymentComplete(props) {
@@ -25,7 +26,7 @@ function PaymentComplete(props) {
         };
         
         updateOrder();
-       
+       message.success("Successfully Paid")
     }, []);
 
     
