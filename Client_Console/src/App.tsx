@@ -238,8 +238,9 @@ const App: React.FC = () => {
               <Route path="/paymentComplete" element={<PaymentComplete/>}></Route>
               <Route path="/login" element={<Login />} />
               <Route path="/register" element={<Register />} />
-              <Route path="/orderDetails" element={<OrderDetails />} />
+              <Route path="/orderDetails/:id" element={<OrderDetails />} />
               <Route path="/newAddress" element={<AddressNew />} />
+
 
 
             </Routes>

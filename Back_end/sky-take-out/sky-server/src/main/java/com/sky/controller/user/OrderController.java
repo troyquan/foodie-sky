@@ -36,4 +36,17 @@ public class OrderController {
         orderService.cancelById(id);
         return Result.success();
     }
+
+    @PostMapping("/pay")
+    @ApiOperation("User Pay Order")
+    public Result<String> pay() {
+        try {
+            List<ShoppingCart> shoppingCartList = shoppingCartService.showShoppingCart();
+            Long userId = BaseContext.getCurrentId();
+            String clientSecret = stripePayUtil.createPaymentIntent(shoppingCartList);
+            return Result.success(clientSecret);
+        } catch (StripeException e) {
+            return Result.error("Error occurred during payment.");
+        }
+    }
 }

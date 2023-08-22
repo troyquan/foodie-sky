@@ -2,7 +2,6 @@ import {useCancelOrderMutation, useGetOrderHistoryQuery} from "../Apis/orderApi.
 import {useEffect, useState} from "react";
 import {Popconfirm, Space, Table} from 'antd';
 import {Link} from "react-router-dom";
-import {ColumnsType} from "antd/es/table";
 
 
 const {Column} = Table;
@@ -60,9 +59,6 @@ interface DataType {
 
 }
 
-
-
-
 const OrderHistory = () => {
   const [pagination, setPagination] = useState({
     current: 1,
@@ -76,14 +72,38 @@ const OrderHistory = () => {
 
   const [orderHistoryData,setOrderHistoryData] = useState([]);
 
-  useEffect(()=>{
+
+
+  const fetchData = ()=>{
     if (orderdata){
-      console.log("total: =======>",orderdata.apiResponse.data.total)
-      console.log("record: ------->",orderdata.apiResponse.data.record)
       settotalVal(Number(orderdata.apiResponse.data.total));
       setOrderHistoryData(orderdata.apiResponse.data.record)
     }
-  },[orderdata,pagination])
+  }
+
+
+  useEffect(()=>{
+    fetchData()
+  },[orderdata])
+
+
+  // useEffect(()=>{
+  //   if (orderdata){
+  //     console.log("total: =======>",orderdata.apiResponse.data.total)
+  //     console.log("record: ------->",orderdata.apiResponse.data.record)
+  //     settotalVal(Number(orderdata.apiResponse.data.total));
+  //     setOrderHistoryData(orderdata.apiResponse.data.record)
+  //   }
+  // },[orderdata,pagination])
+
+
+
+
+
+
+
+
+
 
   const handleCancel = async (id) =>{
     try {
@@ -104,63 +124,9 @@ const OrderHistory = () => {
     6:"Cancelled"
   }
 
-
-  const columns: ColumnsType<DataType> = [
-    {
-      title:"Order Number" ,
-      dataIndex:"number" ,
-      key:"number"
-    },
-      {
-      title:"Status" ,
-      dataIndex:"status" ,
-      key:"status"
-    },
-      {
-      title:"OrderTime" ,
-      dataIndex:"orderTime" ,
-      key:"orderTime"
-    },
-      {
-      title:"Status" ,
-      dataIndex:"status" ,
-      key:"status",
-        render:(status: number)=>{
-        return <span>{statusTextMap[status]}</span>
-      }
-    },
-      {
-      title:"Price" ,
-      dataIndex:"price" ,
-      key:"price"
-    },
-      {
-      title:"Action" ,
-      key:"action",
-        render:(_: any, record:any)=>(
-            <Space size="middle">
-              <Link to={{
-                pathname: `/admin/category/${record.id}`,
-              }}
-              >Details</Link>
-
-              <Popconfirm
-                  title={ 'Are you sure cancel this order?'}
-                  okText="Yes"
-                  cancelText="No"
-                  onConfirm={()=>handleCancel(record.id)}
-              >
-                <a>{record.status === 2 ? 'Cancel' : ''}</a>
-              </Popconfirm>
-            </Space>
-        )
-    },
-
-  ]
-
-
-
-
+  // const ToChangeState = async (record:any) => {
+  //   console.log(record)
+  // }
 
   const [pageVal, setpageVal] = useState(1)
   const [pageSizeVal, setpageSizeVal] = useState(5)
@@ -211,7 +177,7 @@ const OrderHistory = () => {
                   <Space size="middle">
 
                     <Link to={{
-                      pathname: `/admin/category/${record.id}`,
+                      pathname: `/orderDetails/${record.id}`,
                     }}
                     >Details</Link>
 
