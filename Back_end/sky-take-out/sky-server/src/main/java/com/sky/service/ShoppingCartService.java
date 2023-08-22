@@ -23,4 +23,10 @@ public interface ShoppingCartService {
      * Empty shopping cart
      */
     void cleanShoppingCart();
+
+    /**
+     * Delete a product from the shopping cart
+     * @param shoppingCartDTO
+     */
+    void subShoppingCart(ShoppingCartDTO shoppingCartDTO);
 }
