@@ -71,4 +71,14 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         List<ShoppingCart> list = shoppingCartMapper.list(shoppingCart);
         return list;
     }
+
+
+    /**
+     * Empty shopping cart
+     */
+    public void cleanShoppingCart() {
+        //Retrieve the ID of the current WeChat user
+        Long userId = BaseContext.getCurrentId();
+        shoppingCartMapper.deleteByUserId(userId);
+    }
 }
