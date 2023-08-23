@@ -8,4 +8,5 @@ export enum SD_WeatherTypes {
 export enum SD_Status {
   ENABLE = "1",
   BLOCK = "0",
+  ACCEPT = 3,
 }
