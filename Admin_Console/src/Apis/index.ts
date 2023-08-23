@@ -1,7 +1,7 @@
 import authApi from "./authApi";
 import userApi from "./userApi";
 import weatherApi from "./weatherApi";
-import commonApi from "./commonAPi";
+import commonApi from "./commonApi";
 import reportApi from "./reportApi";
 
 import categoryApi from "./categoyApi";
